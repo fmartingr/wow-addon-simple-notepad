@@ -9,10 +9,13 @@ local NUM_TABS = 3
 local TAB_FIRST_X = 11
 local TAB_FIRST_Y = 2
 local TAB_SPACING = 3
+-- 400 frame width minus the first-tab offset (11), two tab gaps (6), and the active tab art overhang (8).
+local TAB_MAX_WIDTH = 375
 
 local storeReady = false
 local activeTab
 local activeZoneKey
+local zoneKey = nil
 
 local frame = CreateFrame("Frame", "SimpleNotepadFrame", UIParent, "ButtonFrameTemplate")
 ButtonFrameTemplate_HidePortrait(frame)
@@ -83,8 +86,6 @@ for index = 1, NUM_TABS do
 	tabs[index] = tab
 end
 PanelTemplates_SetNumTabs(frame, NUM_TABS)
-tabs[TAB_INDEX.global]:Hide()
-tabs[TAB_INDEX.zone]:Hide()
 
 function Window.LayoutTabs()
 	local previous
@@ -103,24 +104,57 @@ function Window.LayoutTabs()
 end
 
 function Window.UpdateLabels()
+	tabs[TAB_INDEX.global]:SetText(L.TAB_GLOBAL)
 	tabs[TAB_INDEX.character]:SetText(UnitName("player"))
+	tabs[TAB_INDEX.zone]:SetText(L.TAB_ZONE)
 end
 
-function Window.ShowTab(tabId, zoneKey)
+function Window.ShowTab(tabId, noteZoneKey)
+	if tabId ~= "zone" then
+		noteZoneKey = nil
+	end
 	-- The editor already holds the bound note, and a reload would reset the cursor and scroll position.
-	if tabId ~= activeTab or zoneKey ~= activeZoneKey then
+	if tabId ~= activeTab or noteZoneKey ~= activeZoneKey then
 		activeTab = tabId
-		activeZoneKey = zoneKey
-		editor:SetText(ns.Store.GetNote(tabId, zoneKey))
+		activeZoneKey = noteZoneKey
+		editor:SetText(ns.Store.GetNote(tabId, noteZoneKey))
 	end
 	PanelTemplates_SetTab(frame, TAB_INDEX[tabId])
+	-- ResizeTabsToFit sizes around the selected tab and does nothing without one, so it must follow every selection.
+	PanelTemplates_ResizeTabsToFit(frame, TAB_MAX_WIDTH)
 	ns.Store.SetLastTab(tabId)
 end
 
 for tabId, index in pairs(TAB_INDEX) do
 	tabs[index]:SetScript("OnClick", function()
-		Window.ShowTab(tabId, activeZoneKey)
+		PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+		Window.ShowTab(tabId, zoneKey)
 	end)
+end
+
+local function ApplyVisibility()
+	local visible = ns.Tabs.Visible(ns.Store.IsTabEnabled, zoneKey ~= nil)
+	local clickable = {}
+	for _, entry in ipairs(visible) do
+		clickable[entry.id] = entry.clickable
+	end
+	for tabId, index in pairs(TAB_INDEX) do
+		PanelTemplates_SetTabShown(frame, index, clickable[tabId] ~= nil)
+		PanelTemplates_SetTabEnabled(frame, index, clickable[tabId] == true)
+	end
+	Window.LayoutTabs()
+	PanelTemplates_ResizeTabsToFit(frame, TAB_MAX_WIDTH)
+	return visible
+end
+
+function Window.Refresh()
+	if not storeReady then
+		return
+	end
+	local visible = ApplyVisibility()
+	if frame:IsShown() and ns.Tabs.Resolve(activeTab, visible) ~= activeTab then
+		Window.ShowTab("character", nil)
+	end
 end
 
 editor:RegisterCallback("OnTextChanged", function()
@@ -134,8 +168,8 @@ function Window.OnShow()
 		return
 	end
 	Window.UpdateLabels()
-	Window.LayoutTabs()
-	Window.ShowTab("character", nil)
+	local visible = ApplyVisibility()
+	Window.ShowTab(ns.Tabs.Resolve(ns.Store.GetLastTab(), visible), zoneKey)
 end
 
 frame:HookScript("OnShow", Window.OnShow)
@@ -143,7 +177,7 @@ frame:HookScript("OnShow", Window.OnShow)
 function Window.OnStoreReady()
 	storeReady = true
 	Window.UpdateLabels()
-	Window.LayoutTabs()
+	Window.Refresh()
 end
 
 function SimpleNotepad_Toggle()

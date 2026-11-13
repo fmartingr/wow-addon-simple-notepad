@@ -322,7 +322,9 @@ Commit each task on its own with the repository's commit convention. The only co
   - [ ] Docs and config that describe the changed behavior are updated.
   - [ ] Task heading checkbox ticked; changes committed.
 
-### [ ] 4. Global tab, tab visibility, and the Settings toggles
+### [x] 4. Global tab, tab visibility, and the Settings toggles
+**Status:** code, unit tests, lint, format, and coverage pass locally. Not run: MT-12 to MT-15 in the game on Forever and Retail. Security review ran as a manual review of the local diff. Open: `PanelTemplates_ResizeTabsToFit` counts hidden tabs and may cut long zone names (check in task 5). Until task 5, the Zone tab shows disabled by default.
+
 - **Outcome:** the Global tab shows the account-wide note. Two checkboxes in Settings show or hide the Global tab and the Zone tab. The window opens on the last valid tab.
 - **Depends on:** 2 (supplies the tab bar, `Window.LayoutTabs`, and `Window.ShowTab`). Task 3 is not required.
 - **Covers:** AC6 (Global tab), AC7, AC10, R6, R7.

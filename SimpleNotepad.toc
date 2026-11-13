@@ -12,5 +12,7 @@
 Locales\enUS.lua
 Core\Store.lua
 Core\Links.lua
+Core\Tabs.lua
 UI\Window.lua
+UI\Settings.lua
 Init.lua

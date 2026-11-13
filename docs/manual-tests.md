@@ -128,3 +128,43 @@ Steps:
 Expected: both links show with color.
 - Forever: not run
 - Retail: not run
+
+## Task 4: Global tab and Settings toggles
+
+### MT-12 Global note is shared
+Steps:
+1. On character A, open the Global tab and type a note.
+2. Log in on character B and open the Global tab.
+
+Expected: the same note shows.
+- Forever: not run
+- Retail: not run
+
+### MT-13 Hide the Global tab
+Steps:
+1. Open Settings > AddOns > Simple Notepad. ESC closes the notepad window before it opens the game menu, so open the settings first.
+2. Enter `/np`, open the Global tab, and move the window so its tabs are not under the Settings panel.
+3. Clear "Show Global tab".
+
+Expected: the Global tab disappears at once. The other tabs move left with no gap. The Character tab shows. Also clear "Show Zone tab": only the Character tab is left, at the left edge.
+- Forever: not run
+- Retail: not run
+
+### MT-14 Show the Global tab again
+Steps:
+1. Check "Show Global tab".
+2. Open the Global tab.
+
+Expected: the old Global note is back.
+- Forever: not run
+- Retail: not run
+
+### MT-15 Last tab
+Steps:
+1. Close the window while the Global tab is active.
+2. Enter `/reload` and open the window.
+3. Clear "Show Global tab" while the window is closed, then open the window.
+
+Expected: after step 2 the window opens on Global. After step 3 the window opens on Character.
+- Forever: not run
+- Retail: not run
