@@ -1,0 +1,11 @@
+## Interface: 16001, 120105
+## Title: Simple Notepad
+## Notes: A notepad for global, character, and zone notes with chat links.
+## Author: Felipe M.
+## Version: @project-version@
+## SavedVariables: SimpleNotepadDB
+## SavedVariablesPerCharacter: SimpleNotepadCharDB
+
+Locales\enUS.lua
+Core\Store.lua
+Init.lua

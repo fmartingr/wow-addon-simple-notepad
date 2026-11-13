@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: JohnnyMorganz/stylua-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: 2.6.0
+          args: --check .
+      - uses: leafo/gh-actions-lua@v11
+        with:
+          luaVersion: "5.1"
+      - uses: leafo/gh-actions-luarocks@v5
+      - name: Install tools
+        run: luarocks install busted && luarocks install luacov && luarocks install luacheck
+      - name: Lint
+        run: luacheck .
+      - name: Test
+        run: busted --coverage
+      - name: Coverage report
+        run: |
+          luacov
+          sed -n '/^Summary/,$p' luacov.report.out
+      - name: Coverage threshold
+        run: |
+          awk '/^Summary/ { s = 1 } s && $1 ~ /^Core\// { n++; sub("%", "", $4); if ($4 + 0 < 90) { print $1 " is below 90% line coverage"; bad = 1 } } END { if (!n) { print "no Core/ files in the coverage report"; bad = 1 } exit bad }' luacov.report.out
