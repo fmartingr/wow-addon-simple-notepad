@@ -44,6 +44,31 @@ scrollBar:SetPoint("TOPLEFT", editor, "TOPRIGHT", 4, -2)
 scrollBar:SetPoint("BOTTOMLEFT", editor, "BOTTOMRIGHT", 4, 2)
 ScrollUtil.RegisterScrollBoxWithScrollBar(editor:GetScrollBox(), scrollBar)
 
+local editBox = editor:GetEditBox()
+editBox:SetHyperlinksEnabled(true)
+-- A shift-click on a link in the note reaches InsertLink through SetItemRef. Skip it so no duplicate link appears.
+editBox:HookScript("OnHyperlinkClick", function(_, link, text, button)
+	if IsModifiedClick("CHATLINK") then
+		return
+	end
+	SetItemRef(link, text, button)
+end)
+
+local function OnInsertLink(text)
+	if ns.Links.ShouldInsert(text, editor:HasFocus(), issecretvalue) then
+		editor:Insert(text)
+	end
+end
+
+if ChatFrameUtil and ChatFrameUtil.InsertLink then
+	hooksecurefunc(ChatFrameUtil, "InsertLink", OnInsertLink)
+end
+-- A hook on the ChatFrameUtil field leaves the ChatEdit_InsertLink global unhooked, even when both name one function.
+-- The global is a plain alias, not a wrapper, so one call fires one hook and a link is inserted once.
+if type(ChatEdit_InsertLink) == "function" then
+	hooksecurefunc("ChatEdit_InsertLink", OnInsertLink)
+end
+
 frame.Inset:EnableMouse(true)
 frame.Inset:SetScript("OnMouseDown", function()
 	editor:SetFocus()

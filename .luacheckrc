@@ -17,14 +17,20 @@ globals = {
 
 read_globals = {
 	"ButtonFrameTemplate_HidePortrait",
+	"ChatEdit_InsertLink",
+	"ChatFrameUtil",
 	"CreateFrame",
+	"IsModifiedClick",
 	"PanelTemplates_SetNumTabs",
 	"PanelTemplates_SetTab",
 	"ScrollUtil",
+	"SetItemRef",
 	SlashCmdList = { fields = { SIMPLENOTEPAD = { read_only = false } } },
 	"UIParent",
 	"UISpecialFrames",
 	"UnitName",
+	"hooksecurefunc",
+	"issecretvalue",
 	"tinsert",
 }
 

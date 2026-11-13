@@ -71,7 +71,7 @@ Acceptance criteria:
 | R8: A corrupt or hand-edited SavedVariables file has wrong types (for example, a number where a string must be). | A Lua error on load. The window does not open. | `Store.Init` replaces each field of the wrong type with its default. It keeps the other fields. | 1 |
 | R9: A hand-edited note can hold a single `\|` that starts a broken escape code. | Strange text in the note. No crash. | Accepted. `EditBox:GetText()` returns typed pipes as `\|\|`, so normal use cannot cause this. | 1 |
 | R10: The CurseForge project ID and the `CF_API_TOKEN` secret do not exist yet. | The release does not upload to CurseForge. | packager skips CurseForge without them. See Open Decisions. | 6 |
-| R11: When the chat edit box is also open, Blizzard inserts the link into the chat box as well. | The link shows in two places. | Accepted. The notepad hook does not change Blizzard behavior. | 3 |
+| R11: When the chat edit box holds unsent text, Blizzard inserts the link into the chat box and moves focus to it before the notepad hook runs. | The link shows only in chat. The note does not change. (Review of task 3 found this. The first text said "both places".) | Accepted. A post-hook cannot change this. The notepad hook does not change Blizzard behavior. | 3 |
 
 ## Current State
 - **Repository:** empty. One commit (`4e7ed76 Initial commit`) with no files. No remote. Branch `master`. No `specs/`, no tests, no CI, no lint config.
@@ -275,7 +275,9 @@ Commit each task on its own with the repository's commit convention. The only co
   - [ ] Docs and config that describe the changed behavior are updated.
   - [ ] Task heading checkbox ticked; changes committed.
 
-### [ ] 3. Link insertion and link click
+### [x] 3. Link insertion and link click
+**Status:** code, unit tests, lint, format, and coverage pass locally. Not run: MT-6 to MT-11 in the game on Forever and Retail. Security review ran as a manual review of the local diff. Known limits of the post-hook design (D8): with the note focused, a shift-click on a bag stack also opens the stack split window, and a shift-click on a quest in the objective tracker also untracks it, because `InsertLink` returns false to its caller. The `ChatEdit_InsertLink` global is hooked whenever it is a function (the alias is a plain reference, so one call fires one hook).
+
 - **Outcome:** a shift-click on an item, quest, spell, talent, or achievement inserts its link into the focused note. A click on a link in the note shows its tooltip (best effort).
 - **Depends on:** 2 (supplies the editor and its focus state).
 - **Covers:** AC4, AC5, R1, R2, R3, R6, R7, R11.

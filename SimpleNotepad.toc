@@ -3,6 +3,7 @@
 ## Notes: A notepad for global, character, and zone notes with chat links.
 ## Author: Felipe M.
 ## Version: @project-version@
+## X-Curse-Project-ID: 1802835
 ## SavedVariables: SimpleNotepadDB
 ## SavedVariablesPerCharacter: SimpleNotepadCharDB
 ## AddonCompartmentFunc: SimpleNotepad_OnAddonCompartmentClick
@@ -10,5 +11,6 @@
 
 Locales\enUS.lua
 Core\Store.lua
+Core\Links.lua
 UI\Window.lua
 Init.lua

@@ -68,3 +68,63 @@ Steps:
 Expected: no Lua error window shows.
 - Forever: not run
 - Retail: not run
+
+## Task 3: link insertion and link click
+
+### MT-6 Insert links
+Steps:
+1. Open the window and click in the text area.
+2. Shift-click a bag item.
+3. Shift-click a quest in the quest log.
+4. Shift-click a spell in the spellbook.
+5. Shift-click a talent.
+6. Shift-click an achievement.
+
+Expected: each link appears at the cursor in its chat color.
+- Forever: not run
+- Retail: not run
+
+### MT-7 No focus, no insert
+Steps:
+1. Open the window and press ESC once to remove focus.
+2. Shift-click a bag item.
+
+Expected: the note does not change.
+- Forever: not run
+- Retail: not run
+
+### MT-8 Click a link in the note
+Steps:
+1. Put an item link in the note.
+2. Click the link.
+
+Expected: the item tooltip shows, as for a link in chat. Record pass or fail for each client. If it fails, links stay colored text only (risk R3).
+- Forever: not run
+- Retail: not run
+
+### MT-9 Shift-click a link in the note
+Steps:
+1. Put an item link in the note.
+2. Shift-click that link.
+
+Expected: no second link is inserted.
+- Forever: not run
+- Retail: not run
+
+### MT-10 Secret values
+Steps:
+1. Enter an instance and start an encounter.
+2. Open the window, click in the text area, and shift-click a bag item.
+
+Expected: no Lua error shows. The note does not change when the link is secret.
+- Forever: not run
+- Retail: not run
+
+### MT-11 Links after reload
+Steps:
+1. Put two links in the note.
+2. Enter `/reload` and open the window.
+
+Expected: both links show with color.
+- Forever: not run
+- Retail: not run
