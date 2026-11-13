@@ -24,5 +24,18 @@ function SettingsPanel.OnStoreReady()
 		end)
 		Settings.CreateCheckbox(category, setting, L["SETTING_SHOW_" .. key .. "_TOOLTIP"])
 	end
+	local minimapSetting = Settings.RegisterAddOnSetting(
+		category,
+		"SimpleNotebook_ShowMinimap",
+		"show",
+		SimpleNotebookDB.minimap,
+		Settings.VarType.Boolean,
+		L.SETTING_SHOW_MINIMAP,
+		true
+	)
+	minimapSetting:SetValueChangedCallback(function()
+		ns.MinimapButton.Refresh()
+	end)
+	Settings.CreateCheckbox(category, minimapSetting, L.SETTING_SHOW_MINIMAP_TOOLTIP)
 	Settings.RegisterAddOnCategory(category)
 end

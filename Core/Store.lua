@@ -6,6 +6,7 @@ ns.Store = Store
 local SCHEMA_VERSION = 1
 local TAB_IDS = { global = true, character = true, zone = true }
 local OPTIONAL_TABS = { global = true, zone = true }
+local DEFAULT_MINIMAP_ANGLE = 225
 
 local accountData
 local charData
@@ -22,6 +23,14 @@ local function isPositiveInteger(value)
 	return type(value) == "number" and value > 0 and value % 1 == 0
 end
 
+local function isFiniteNumber(value)
+	return type(value) == "number" and value == value and value > -math.huge and value < math.huge
+end
+
+local function normalizeAngle(value)
+	return isFiniteNumber(value) and value % 360 or nil
+end
+
 local function repairVersion(value)
 	return isPositiveInteger(value) and value or SCHEMA_VERSION
 end
@@ -34,6 +43,9 @@ function Store.Init(accountDB, charDB)
 	for tabId in pairs(OPTIONAL_TABS) do
 		accountDB.tabs[tabId] = repair(accountDB.tabs[tabId], "boolean", true)
 	end
+	accountDB.minimap = repair(accountDB.minimap, "table", {})
+	accountDB.minimap.angle = normalizeAngle(accountDB.minimap.angle) or DEFAULT_MINIMAP_ANGLE
+	accountDB.minimap.show = repair(accountDB.minimap.show, "boolean", true)
 
 	charDB = repair(charDB, "table", {})
 	charDB.schemaVersion = repairVersion(charDB.schemaVersion)
@@ -108,4 +120,16 @@ function Store.SetLastTab(tabId)
 	if TAB_IDS[tabId] then
 		charData.lastTab = tabId
 	end
+end
+
+function Store.GetMinimapAngle()
+	return accountData.minimap.angle
+end
+
+function Store.SetMinimapAngle(angle)
+	accountData.minimap.angle = normalizeAngle(angle) or accountData.minimap.angle
+end
+
+function Store.IsMinimapShown()
+	return accountData.minimap.show == true
 end

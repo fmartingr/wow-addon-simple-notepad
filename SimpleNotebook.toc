@@ -14,6 +14,8 @@ Core\Store.lua
 Core\Links.lua
 Core\Tabs.lua
 Core\Zone.lua
+Core\MinimapMath.lua
 UI\Window.lua
+UI\MinimapButton.lua
 UI\Settings.lua
 Init.lua

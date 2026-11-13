@@ -22,6 +22,8 @@ read_globals = {
 	"ChatFrameUtil",
 	"CreateFrame",
 	"GameTooltip",
+	"GetCursorPosition",
+	"Minimap",
 	"PanelTemplates_ResizeTabsToFit",
 	"PanelTemplates_SetTabEnabled",
 	"PanelTemplates_SetTabShown",

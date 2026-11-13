@@ -15,14 +15,15 @@ A notebook window for World of Warcraft. It keeps notes at three levels and hold
 ## Open the window
 
 - Type `/notebook` or `/nb`.
-- Click the addon compartment entry (the button near the minimap).
+- Click the minimap button. Drag it to move it around the minimap edge.
+- Click the addon compartment entry (the small menu button near the minimap).
 - Press a key. Set the key in Options > Key Bindings > AddOns > Simple Notebook. No default key exists.
 
 Press ESC once to leave the text area. Press ESC again to close the window.
 
 ## Tab rules
 
-- **Settings:** open Settings > AddOns > Simple Notebook. Two checkboxes show or hide the **Global** tab and the **Zone** tab. The setting is the same for all characters.
+- **Settings:** open Settings > AddOns > Simple Notebook. Two checkboxes show or hide the **Global** tab and the **Zone** tab. A third checkbox shows or hides the minimap button. The setting is the same for all characters.
 - **Character tab:** it cannot be hidden.
 - **Hidden tabs:** a hidden tab keeps its note. The note is back when you show the tab again.
 - **Zone key:** one note exists for each zone map. One note exists for each instance. Subzones use the note of their parent zone.

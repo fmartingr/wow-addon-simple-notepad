@@ -227,3 +227,17 @@ Steps:
 Expected: the tabs stay inside the window. The selected tab shows its full label. A cut label ends with "...", and hovering it shows the full name in a tooltip.
 - Forever: not run
 - Retail: not run
+
+## Minimap button
+
+### MT-22 Minimap button
+Steps:
+1. Log in and look at the minimap.
+2. Click the button.
+3. Hover the button.
+4. Drag the button around the minimap edge, then enter `/reload`.
+5. Open Settings > AddOns > Simple Notebook and clear "Show minimap button".
+
+Expected: the button shows at the lower left of the minimap on first login. A click opens and closes the window. The tooltip shows the title and the hint. The button follows the cursor around the edge and stays at the same place after `/reload`. The button hides at once after step 5 and shows again when you check the box.
+- Forever: not run
+- Retail: not run

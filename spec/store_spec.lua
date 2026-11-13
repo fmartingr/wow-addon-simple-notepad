@@ -10,22 +10,39 @@ describe("Store", function()
 	describe("Init", function()
 		it("returns default shapes for nil input", function()
 			local account, char = Store.Init(nil, nil)
-			assert.same({ schemaVersion = 1, global = "", tabs = { global = true, zone = true } }, account)
+			assert.same({
+				schemaVersion = 1,
+				global = "",
+				tabs = { global = true, zone = true },
+				minimap = { angle = 225, show = true },
+			}, account)
 			assert.same({ schemaVersion = 1, character = "", zones = {}, lastTab = "character" }, char)
 		end)
 
 		it("returns default shapes for non-table input", function()
 			local account, char = Store.Init(5, "x")
-			assert.same({ schemaVersion = 1, global = "", tabs = { global = true, zone = true } }, account)
+			assert.same({
+				schemaVersion = 1,
+				global = "",
+				tabs = { global = true, zone = true },
+				minimap = { angle = 225, show = true },
+			}, account)
 			assert.same({ schemaVersion = 1, character = "", zones = {}, lastTab = "character" }, char)
 		end)
 
 		it("keeps valid fields", function()
-			local account, char = Store.Init(
-				{ schemaVersion = 1, global = "g", tabs = { global = false, zone = false } },
-				{ schemaVersion = 1, character = "c", zones = { [84] = "z" }, lastTab = "zone" }
-			)
-			assert.same({ schemaVersion = 1, global = "g", tabs = { global = false, zone = false } }, account)
+			local account, char = Store.Init({
+				schemaVersion = 1,
+				global = "g",
+				tabs = { global = false, zone = false },
+				minimap = { angle = 90, show = false },
+			}, { schemaVersion = 1, character = "c", zones = { [84] = "z" }, lastTab = "zone" })
+			assert.same({
+				schemaVersion = 1,
+				global = "g",
+				tabs = { global = false, zone = false },
+				minimap = { angle = 90, show = false },
+			}, account)
 			assert.same({ schemaVersion = 1, character = "c", zones = { [84] = "z" }, lastTab = "zone" }, char)
 		end)
 
@@ -304,6 +321,52 @@ describe("Store", function()
 			Store.SetLastTab("global")
 			Store.SetLastTab("bogus")
 			assert.equal("global", Store.GetLastTab())
+		end)
+	end)
+	describe("minimap", function()
+		it("repairs a wrong-typed minimap table", function()
+			local account = Store.Init({ minimap = "x" }, nil)
+			assert.same({ angle = 225, show = true }, account.minimap)
+		end)
+
+		it("repairs a wrong-typed angle and show flag independently", function()
+			local account = Store.Init({ minimap = { angle = "up", show = 1 } }, nil)
+			assert.same({ angle = 225, show = true }, account.minimap)
+			account = Store.Init({ minimap = { angle = 10, show = "no" } }, nil)
+			assert.same({ angle = 10, show = true }, account.minimap)
+		end)
+
+		it("repairs NaN and infinite angles", function()
+			assert.equal(225, Store.Init({ minimap = { angle = 0 / 0 } }, nil).minimap.angle)
+			assert.equal(225, Store.Init({ minimap = { angle = math.huge } }, nil).minimap.angle)
+			assert.equal(225, Store.Init({ minimap = { angle = -math.huge } }, nil).minimap.angle)
+		end)
+
+		it("normalizes a saved angle into 0 to 360", function()
+			assert.equal(350, Store.Init({ minimap = { angle = -10 } }, nil).minimap.angle)
+			assert.equal(20, Store.Init({ minimap = { angle = 380 } }, nil).minimap.angle)
+		end)
+
+		it("stores a new angle and normalizes it", function()
+			Store.Init(nil, nil)
+			Store.SetMinimapAngle(-90)
+			assert.equal(270, Store.GetMinimapAngle())
+		end)
+
+		it("ignores an angle that is not a finite number", function()
+			Store.Init(nil, nil)
+			Store.SetMinimapAngle(45)
+			Store.SetMinimapAngle("x")
+			Store.SetMinimapAngle(0 / 0)
+			Store.SetMinimapAngle(math.huge)
+			assert.equal(45, Store.GetMinimapAngle())
+		end)
+
+		it("reports the show flag", function()
+			Store.Init(nil, nil)
+			assert.is_true(Store.IsMinimapShown())
+			Store.Init({ minimap = { show = false } }, nil)
+			assert.is_false(Store.IsMinimapShown())
 		end)
 	end)
 end)
