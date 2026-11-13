@@ -17,9 +17,11 @@ globals = {
 
 read_globals = {
 	"ButtonFrameTemplate_HidePortrait",
+	"C_Map",
 	"ChatEdit_InsertLink",
 	"ChatFrameUtil",
 	"CreateFrame",
+	"GameTooltip",
 	"PanelTemplates_ResizeTabsToFit",
 	"PanelTemplates_SetTabEnabled",
 	"PanelTemplates_SetTabShown",
@@ -28,6 +30,7 @@ read_globals = {
 	"SOUNDKIT",
 	"IsModifiedClick",
 	"PanelTemplates_SetNumTabs",
+	"PanelTemplates_TabResize",
 	"PanelTemplates_SetTab",
 	"ScrollUtil",
 	"SetItemRef",

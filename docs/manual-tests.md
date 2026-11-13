@@ -168,3 +168,62 @@ Steps:
 Expected: after step 2 the window opens on Global. After step 3 the window opens on Character.
 - Forever: not run
 - Retail: not run
+
+## Task 5: Zone tab
+
+### MT-16 Zone notes follow the zone
+Steps:
+1. Open the Zone tab in Elwynn Forest and type a note.
+2. Travel to Westfall.
+3. Look at the Zone tab label.
+4. Travel back to Elwynn Forest.
+
+Expected: after step 2 the label changes to the new zone and the note is empty. After step 4 the Elwynn note is back.
+- Forever: not run
+- Retail: not run
+
+### MT-17 Zone change while typing
+Steps:
+1. Open the Zone tab and keep the text area focused.
+2. Type while you cross a zone border.
+
+Expected: the text typed before the border stays in the old zone note.
+- Forever: not run
+- Retail: not run
+
+### MT-18 Dungeon floors
+Steps:
+1. Enter a dungeon with several floors.
+2. Write a Zone note.
+3. Change floors.
+
+Expected: one note for the whole dungeon.
+- Forever: not run
+- Retail: not run
+
+### MT-19 Zone note per character
+Steps:
+1. Log in on a second character in a zone that has a Zone note on the first character.
+2. Open the Zone tab.
+
+Expected: the Zone note is empty.
+- Forever: not run
+- Retail: not run
+
+### MT-20 No zone
+Steps:
+1. Go to a place where the client reports no zone map, if you can find one (for example, flight over a continent).
+2. Open the window and hover the Zone tab.
+
+Expected: the Zone tab is disabled. The tooltip reads "No zone detected". If the Zone tab was active, the Character tab shows. If no such place exists, record "not reproduced".
+- Forever: not run
+- Retail: not run
+
+### MT-21 Long zone names
+Steps:
+1. Go to a zone with a long name.
+2. Open the window.
+
+Expected: the tabs stay inside the window. The selected tab shows its full label. A cut label ends with "...", and hovering it shows the full name in a tooltip.
+- Forever: not run
+- Retail: not run

@@ -4,6 +4,7 @@ ns.L = {
 	ADDON_TITLE = "Simple Notepad",
 	BINDING_TOGGLE = "Toggle notepad",
 	TAB_GLOBAL = "Global",
+	NO_ZONE = "No zone detected",
 	TAB_ZONE = "Zone",
 	SETTING_SHOW_GLOBAL = "Show Global tab",
 	SETTING_SHOW_GLOBAL_TOOLTIP = "Show the Global tab. Its note is the same for all characters on this account.",

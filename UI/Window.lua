@@ -16,6 +16,7 @@ local storeReady = false
 local activeTab
 local activeZoneKey
 local zoneKey = nil
+local zoneName = nil
 
 local frame = CreateFrame("Frame", "SimpleNotepadFrame", UIParent, "ButtonFrameTemplate")
 ButtonFrameTemplate_HidePortrait(frame)
@@ -106,7 +107,11 @@ end
 function Window.UpdateLabels()
 	tabs[TAB_INDEX.global]:SetText(L.TAB_GLOBAL)
 	tabs[TAB_INDEX.character]:SetText(UnitName("player"))
-	tabs[TAB_INDEX.zone]:SetText(L.TAB_ZONE)
+	tabs[TAB_INDEX.zone]:SetText(zoneName or L.TAB_ZONE)
+	-- SetText does not resize a tab, and ResizeTabsToFit may have fixed its width for the old label.
+	for index = 1, NUM_TABS do
+		PanelTemplates_TabResize(tabs[index])
+	end
 end
 
 function Window.ShowTab(tabId, noteZoneKey)
@@ -173,6 +178,34 @@ function Window.OnShow()
 end
 
 frame:HookScript("OnShow", Window.OnShow)
+
+-- PanelTabButtonTemplate sets motionScriptsWhileDisabled, so the disabled tab still gets OnEnter.
+-- Its own OnEnter shows a truncated label in full, and its OnLeave hides the tooltip.
+tabs[TAB_INDEX.zone]:HookScript("OnEnter", function(self)
+	if zoneKey == nil then
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+		GameTooltip:SetText(L.NO_ZONE)
+		GameTooltip:Show()
+	end
+end)
+
+function Window.UpdateZone()
+	local newKey, newName = ns.Zone.Resolve(C_Map.GetBestMapForUnit, C_Map.GetMapInfo)
+	if newKey == zoneKey and newName == zoneName then
+		return
+	end
+	local keyChanged = newKey ~= zoneKey
+	zoneKey = newKey
+	zoneName = newName
+	if not storeReady then
+		return
+	end
+	Window.UpdateLabels()
+	Window.Refresh()
+	if keyChanged and newKey ~= nil and frame:IsShown() and activeTab == "zone" then
+		Window.ShowTab("zone", newKey)
+	end
+end
 
 function Window.OnStoreReady()
 	storeReady = true

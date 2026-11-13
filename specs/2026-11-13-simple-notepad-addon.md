@@ -374,7 +374,9 @@ Commit each task on its own with the repository's commit convention. The only co
   - [ ] Docs and config that describe the changed behavior are updated.
   - [ ] Task heading checkbox ticked; changes committed.
 
-### [ ] 5. Zone tab
+### [x] 5. Zone tab
+**Status:** code, unit tests, lint, format, and coverage pass locally. Not run: MT-16 to MT-21 in the game on Forever and Retail. Security review ran as a manual review of the local diff. Open: (1) on some clients each dungeon floor may be its own Dungeon map, which gives one note per floor; MT-18 decides, and a fix (for example `C_Map.GetMapGroupID`) changes D5. (2) When the zone disappears while the Zone tab is active, the fallback saves `lastTab = "character"`. (3) Hidden tabs still count in `PanelTemplates_ResizeTabsToFit`.
+
 - **Outcome:** the Zone tab shows the note of the current zone or instance for this character. It follows the player across zones. It is disabled when no zone map exists.
 - **Depends on:** 4 (supplies `Tabs.Visible` with `zoneAvailable`, `Window.Refresh`, and the Zone setting).
 - **Covers:** AC6 (Zone tab), AC8, AC9, R4, R6, R7.
