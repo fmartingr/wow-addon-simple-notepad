@@ -5,7 +5,10 @@
 ## Version: @project-version@
 ## SavedVariables: SimpleNotepadDB
 ## SavedVariablesPerCharacter: SimpleNotepadCharDB
+## AddonCompartmentFunc: SimpleNotepad_OnAddonCompartmentClick
+## IconTexture: Interface\Icons\INV_Misc_Note_01
 
 Locales\enUS.lua
 Core\Store.lua
+UI\Window.lua
 Init.lua

@@ -227,7 +227,9 @@ Commit each task on its own with the repository's commit convention. The only co
   - [ ] Docs and config that describe the changed behavior are updated.
   - [ ] Task heading checkbox ticked; changes committed.
 
-### [ ] 2. Notepad window with the Character tab
+### [x] 2. Notepad window with the Character tab
+**Status:** code, lint, and format pass locally. Not run: MT-1 to MT-5 in the game on Forever and Retail. Security review ran as a manual review of the local diff.
+
 - **Outcome:** the player opens a native-style window with `/notepad`, `/np`, the addon compartment, or a key binding. The player types a Character note. The note is there after `/reload`.
 - **Depends on:** 1 (supplies `ns.Store`, the TOC, `Init.lua`, and the lint and test setup).
 - **Covers:** AC1, AC2, AC3, AC6 (Character tab only), AC10 (Character tab only), R6, R7.

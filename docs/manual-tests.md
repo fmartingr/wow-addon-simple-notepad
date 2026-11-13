@@ -1,0 +1,70 @@
+# Manual in-game tests
+
+The WoW client has no headless test tool. These checks cover the UI code. The busted tests cover the core.
+
+## Format
+
+- Each entry is named `MT-<n>`.
+- Each entry lists steps and the expected result.
+- Each entry has one result line per client.
+- Result values: `pass`, `fail`, `not run`, or `not reproduced`.
+- Before each run, enter `/console scriptErrors 1`.
+- After each code change, enter `/reload`.
+- Install path Retail: `<WoW>/_retail_/Interface/AddOns/SimpleNotepad`.
+- Install path Forever: `<WoW>/_forever_/Interface/AddOns/SimpleNotepad` (folder name not verified).
+
+## Task 2: window and Character tab
+
+### MT-1 Open the window
+Steps:
+1. Enter `/notepad`.
+2. Enter `/np`.
+3. Click the addon compartment entry.
+4. Bind a key in Key Bindings > AddOns > Simple Notepad, then press it.
+5. Click in the text area, then click the addon compartment entry.
+
+Expected: each action toggles the window. The compartment entry shows the note icon. Step 5 closes the window.
+- Forever: not run
+- Retail: not run
+
+### MT-2 ESC behavior
+Steps:
+1. Open the window and click in the text area.
+2. Press ESC once.
+3. Press ESC again.
+
+Expected: the first ESC removes focus from the text area. The window stays open. The second ESC closes the window.
+- Forever: not run
+- Retail: not run
+
+### MT-3 Window position
+Steps:
+1. Drag the window by its title bar to a new place.
+2. Enter `/reload`.
+3. Open the window.
+4. Start to drag the window. Press ESC while the mouse button is still down. Release the button and open the window.
+
+Expected: after step 3, the window is at the same place. After step 4, the window does not follow the cursor.
+- Forever: not run
+- Retail: not run
+
+### MT-4 Note persistence
+Steps:
+1. Type three lines of text in the Character tab.
+2. Enter `/reload` and open the window.
+3. Log out, log in, and open the window.
+4. Type lines until the text is taller than the text area.
+5. Delete all text, then enter `/reload` and open the window.
+
+Expected: the text is the same after steps 2 and 3. After step 4, the scroll bar scrolls the text. After step 5, the note is empty and no error shows.
+- Forever: not run
+- Retail: not run
+
+### MT-5 No Lua errors
+Steps:
+1. Enter `/console scriptErrors 1`.
+2. Do MT-1 to MT-4.
+
+Expected: no Lua error window shows.
+- Forever: not run
+- Retail: not run

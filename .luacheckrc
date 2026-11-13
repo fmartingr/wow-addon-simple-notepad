@@ -16,7 +16,16 @@ globals = {
 }
 
 read_globals = {
+	"ButtonFrameTemplate_HidePortrait",
 	"CreateFrame",
+	"PanelTemplates_SetNumTabs",
+	"PanelTemplates_SetTab",
+	"ScrollUtil",
+	SlashCmdList = { fields = { SIMPLENOTEPAD = { read_only = false } } },
+	"UIParent",
+	"UISpecialFrames",
+	"UnitName",
+	"tinsert",
 }
 
 files["spec/**"] = { std = "+busted" }
