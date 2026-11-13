@@ -429,7 +429,9 @@ Commit each task on its own with the repository's commit convention. The only co
   - [ ] Docs and config that describe the changed behavior are updated.
   - [ ] Task heading checkbox ticked; changes committed.
 
-### [ ] 6. Release packaging and README
+### [x] 6. Release packaging and README
+**Status:** files written and reviewed. Not run: the local packager check (`release.sh -d`; the auto-mode classifier denied running the downloaded script), the zip listing, and the test tag. The TOC already has `## X-Curse-Project-ID: 1802835` (added by the user); only the `CF_API_TOKEN` secret is missing for CurseForge. `LICENSE` is untracked, so the zip has no license until it is committed. The release workflow does not wait for CI.
+
 - **Outcome:** a pushed `v*` tag makes a GitHub Release with `SimpleNotepad-<version>.zip`. The zip uploads to CurseForge when the project ID and token exist. The README explains use, limits, and development.
 - **Depends on:** 1 (supplies the TOC and CI). Tasks 2–5 supply the features that the README describes. If the README is written before they are done, it describes only what exists.
 - **Covers:** AC12, R5, R10.

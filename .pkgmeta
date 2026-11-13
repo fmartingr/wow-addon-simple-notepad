@@ -1,0 +1,12 @@
+package-as: SimpleNotepad
+
+ignore:
+  - .busted
+  - .github
+  - .luacheckrc
+  - .luacov
+  - .stylua.toml
+  - docs
+  - spec
+  - specs
+  - README.md
