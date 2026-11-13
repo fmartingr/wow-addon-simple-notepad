@@ -7,7 +7,7 @@
 ## SavedVariables: SimpleNotebookDB
 ## SavedVariablesPerCharacter: SimpleNotebookCharDB
 ## AddonCompartmentFunc: SimpleNotebook_OnAddonCompartmentClick
-## IconTexture: Interface\Icons\INV_Misc_Note_01
+## IconTexture: Interface\AddOns\SimpleNotebook\Media\icon
 
 Locales\enUS.lua
 Core\Store.lua

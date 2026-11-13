@@ -6,7 +6,7 @@ ns.MinimapButton = MinimapButton
 
 local BUTTON_SIZE = 31
 local RADIUS_OFFSET = 5
-local ICON_PATH = "Interface\\Icons\\INV_Misc_Note_01"
+local ICON_PATH = "Interface\\AddOns\\SimpleNotebook\\Media\\icon"
 local TEXTURE_BORDER = 136430
 local TEXTURE_BACKGROUND = 136467
 local TEXTURE_HIGHLIGHT = 136477
