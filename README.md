@@ -1,6 +1,6 @@
-# Simple Notepad
+# Simple Notebook
 
-A notepad window for World of Warcraft. It keeps notes at three levels and holds chat links.
+A notebook window for World of Warcraft. It keeps notes at three levels and holds chat links.
 
 ## Features
 
@@ -14,15 +14,15 @@ A notepad window for World of Warcraft. It keeps notes at three levels and holds
 
 ## Open the window
 
-- Type `/notepad` or `/np`.
+- Type `/notebook` or `/nb`.
 - Click the addon compartment entry (the button near the minimap).
-- Press a key. Set the key in Options > Key Bindings > AddOns > Simple Notepad. No default key exists.
+- Press a key. Set the key in Options > Key Bindings > AddOns > Simple Notebook. No default key exists.
 
 Press ESC once to leave the text area. Press ESC again to close the window.
 
 ## Tab rules
 
-- **Settings:** open Settings > AddOns > Simple Notepad. Two checkboxes show or hide the **Global** tab and the **Zone** tab. The setting is the same for all characters.
+- **Settings:** open Settings > AddOns > Simple Notebook. Two checkboxes show or hide the **Global** tab and the **Zone** tab. The setting is the same for all characters.
 - **Character tab:** it cannot be hidden.
 - **Hidden tabs:** a hidden tab keeps its note. The note is back when you show the tab again.
 - **Zone key:** one note exists for each zone map. One note exists for each instance. Subzones use the note of their parent zone.
@@ -59,17 +59,17 @@ busted --coverage && luacov && sed -n '/^Summary/,$p' luacov.report.out
 
 - Each file in `Core/` must have at least 90% line coverage.
 - The UI code is not unit tested. Run the checks in `docs/manual-tests.md` in the game, on both clients.
-- To test in the game, link or copy the folder to `Interface/AddOns/SimpleNotepad`. Use `/reload` after each change.
+- To test in the game, link or copy the folder to `Interface/AddOns/SimpleNotebook`. Use `/reload` after each change.
 
 ## Release
 
 1. Tag the commit: `git tag vX.Y.Z`.
 2. Push the tag: `git push origin vX.Y.Z`.
-3. The Release workflow builds `SimpleNotepad-vX.Y.Z.zip` with the BigWigsMods packager. It uploads the zip to GitHub Releases.
+3. The Release workflow builds `SimpleNotebook-vX.Y.Z.zip` with the BigWigsMods packager. It uploads the zip to GitHub Releases.
 
 CurseForge upload:
 
-- `SimpleNotepad.toc` holds the CurseForge project ID (`## X-Curse-Project-ID`).
+- `SimpleNotebook.toc` holds the CurseForge project ID (`## X-Curse-Project-ID`).
 - Add the repository secret `CF_API_TOKEN` to upload to CurseForge. Without it, the workflow skips CurseForge.
 
 ## License

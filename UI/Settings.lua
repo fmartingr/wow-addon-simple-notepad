@@ -12,9 +12,9 @@ function SettingsPanel.OnStoreReady()
 		local key = id:upper()
 		local setting = Settings.RegisterAddOnSetting(
 			category,
-			"SimpleNotepad_ShowTab_" .. id,
+			"SimpleNotebook_ShowTab_" .. id,
 			id,
-			SimpleNotepadDB.tabs,
+			SimpleNotebookDB.tabs,
 			Settings.VarType.Boolean,
 			L["SETTING_SHOW_" .. key],
 			true

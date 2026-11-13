@@ -4,15 +4,15 @@ codes = true
 exclude_files = { ".lua/**", ".luarocks/**", ".release/**" }
 
 globals = {
-	"SimpleNotepadDB",
-	"SimpleNotepadCharDB",
-	"SimpleNotepadFrame",
-	"SimpleNotepad_Toggle",
-	"SimpleNotepad_OnAddonCompartmentClick",
-	"SLASH_SIMPLENOTEPAD1",
-	"SLASH_SIMPLENOTEPAD2",
-	"BINDING_HEADER_SIMPLENOTEPAD",
-	"BINDING_NAME_SIMPLENOTEPAD_TOGGLE",
+	"SimpleNotebookDB",
+	"SimpleNotebookCharDB",
+	"SimpleNotebookFrame",
+	"SimpleNotebook_Toggle",
+	"SimpleNotebook_OnAddonCompartmentClick",
+	"SLASH_SIMPLENOTEBOOK1",
+	"SLASH_SIMPLENOTEBOOK2",
+	"BINDING_HEADER_SIMPLENOTEBOOK",
+	"BINDING_NAME_SIMPLENOTEBOOK_TOGGLE",
 }
 
 read_globals = {
@@ -34,7 +34,7 @@ read_globals = {
 	"PanelTemplates_SetTab",
 	"ScrollUtil",
 	"SetItemRef",
-	SlashCmdList = { fields = { SIMPLENOTEPAD = { read_only = false } } },
+	SlashCmdList = { fields = { SIMPLENOTEBOOK = { read_only = false } } },
 	"UIParent",
 	"UISpecialFrames",
 	"UnitName",

@@ -1,8 +1,8 @@
 local _, ns = ...
 
 ns.L = {
-	ADDON_TITLE = "Simple Notepad",
-	BINDING_TOGGLE = "Toggle notepad",
+	ADDON_TITLE = "Simple Notebook",
+	BINDING_TOGGLE = "Toggle notebook",
 	TAB_GLOBAL = "Global",
 	NO_ZONE = "No zone detected",
 	TAB_ZONE = "Zone",

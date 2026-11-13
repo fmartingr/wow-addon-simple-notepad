@@ -18,7 +18,7 @@ local activeZoneKey
 local zoneKey = nil
 local zoneName = nil
 
-local frame = CreateFrame("Frame", "SimpleNotepadFrame", UIParent, "ButtonFrameTemplate")
+local frame = CreateFrame("Frame", "SimpleNotebookFrame", UIParent, "ButtonFrameTemplate")
 ButtonFrameTemplate_HidePortrait(frame)
 if frame.SetTitle then
 	frame:SetTitle(L.ADDON_TITLE)
@@ -37,7 +37,7 @@ frame:SetScript("OnDragStart", frame.StartMoving)
 frame:SetScript("OnDragStop", frame.StopMovingOrSizing)
 -- ESC or the key binding can hide the frame during a drag, and then OnDragStop never fires.
 frame:HookScript("OnHide", frame.StopMovingOrSizing)
-tinsert(UISpecialFrames, "SimpleNotepadFrame")
+tinsert(UISpecialFrames, "SimpleNotebookFrame")
 
 local editor = CreateFrame("Frame", nil, frame.Inset, "ScrollingEditBoxTemplate")
 editor:SetPoint("TOPLEFT", frame.Inset, "TOPLEFT", 8, -6)
@@ -213,17 +213,17 @@ function Window.OnStoreReady()
 	Window.Refresh()
 end
 
-function SimpleNotepad_Toggle()
+function SimpleNotebook_Toggle()
 	frame:SetShown(not frame:IsShown())
 end
 
-function SimpleNotepad_OnAddonCompartmentClick()
-	SimpleNotepad_Toggle()
+function SimpleNotebook_OnAddonCompartmentClick()
+	SimpleNotebook_Toggle()
 end
 
-SLASH_SIMPLENOTEPAD1 = "/notepad"
-SLASH_SIMPLENOTEPAD2 = "/np"
-SlashCmdList.SIMPLENOTEPAD = SimpleNotepad_Toggle
+SLASH_SIMPLENOTEBOOK1 = "/notebook"
+SLASH_SIMPLENOTEBOOK2 = "/nb"
+SlashCmdList.SIMPLENOTEBOOK = SimpleNotebook_Toggle
 
-BINDING_HEADER_SIMPLENOTEPAD = L.ADDON_TITLE
-BINDING_NAME_SIMPLENOTEPAD_TOGGLE = L.BINDING_TOGGLE
+BINDING_HEADER_SIMPLENOTEBOOK = L.ADDON_TITLE
+BINDING_NAME_SIMPLENOTEBOOK_TOGGLE = L.BINDING_TOGGLE

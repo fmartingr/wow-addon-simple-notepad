@@ -1,4 +1,4 @@
-package-as: SimpleNotepad
+package-as: SimpleNotebook
 
 ignore:
   - .busted

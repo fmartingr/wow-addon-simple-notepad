@@ -15,7 +15,7 @@ end
 frame:SetScript("OnEvent", function(self, event, loadedName)
 	if event == "ADDON_LOADED" then
 		if loadedName == addonName then
-			SimpleNotepadDB, SimpleNotepadCharDB = ns.Store.Init(SimpleNotepadDB, SimpleNotepadCharDB)
+			SimpleNotebookDB, SimpleNotebookCharDB = ns.Store.Init(SimpleNotebookDB, SimpleNotebookCharDB)
 			ns.Window.OnStoreReady()
 			ns.SettingsPanel.OnStoreReady()
 			self:UnregisterEvent("ADDON_LOADED")

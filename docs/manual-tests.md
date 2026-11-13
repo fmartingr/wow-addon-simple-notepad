@@ -10,17 +10,17 @@ The WoW client has no headless test tool. These checks cover the UI code. The bu
 - Result values: `pass`, `fail`, `not run`, or `not reproduced`.
 - Before each run, enter `/console scriptErrors 1`.
 - After each code change, enter `/reload`.
-- Install path Retail: `<WoW>/_retail_/Interface/AddOns/SimpleNotepad`.
-- Install path Forever: `<WoW>/_forever_/Interface/AddOns/SimpleNotepad` (folder name not verified).
+- Install path Retail: `<WoW>/_retail_/Interface/AddOns/SimpleNotebook`.
+- Install path Forever: `<WoW>/_forever_/Interface/AddOns/SimpleNotebook` (folder name not verified).
 
 ## Task 2: window and Character tab
 
 ### MT-1 Open the window
 Steps:
-1. Enter `/notepad`.
-2. Enter `/np`.
+1. Enter `/notebook`.
+2. Enter `/nb`.
 3. Click the addon compartment entry.
-4. Bind a key in Key Bindings > AddOns > Simple Notepad, then press it.
+4. Bind a key in Key Bindings > AddOns > Simple Notebook, then press it.
 5. Click in the text area, then click the addon compartment entry.
 
 Expected: each action toggles the window. The compartment entry shows the note icon. Step 5 closes the window.
@@ -142,8 +142,8 @@ Expected: the same note shows.
 
 ### MT-13 Hide the Global tab
 Steps:
-1. Open Settings > AddOns > Simple Notepad. ESC closes the notepad window before it opens the game menu, so open the settings first.
-2. Enter `/np`, open the Global tab, and move the window so its tabs are not under the Settings panel.
+1. Open Settings > AddOns > Simple Notebook. ESC closes the notebook window before it opens the game menu, so open the settings first.
+2. Enter `/nb`, open the Global tab, and move the window so its tabs are not under the Settings panel.
 3. Clear "Show Global tab".
 
 Expected: the Global tab disappears at once. The other tabs move left with no gap. The Character tab shows. Also clear "Show Zone tab": only the Character tab is left, at the left edge.
