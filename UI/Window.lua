@@ -213,6 +213,16 @@ function Window.OnStoreReady()
 	Window.Refresh()
 end
 
+function Window.OpenCharacter()
+	if not storeReady then
+		return
+	end
+	ns.Store.SetLastTab("character")
+	frame:Show()
+	-- Show does nothing to a frame that is already shown, so select the tab directly.
+	Window.ShowTab("character", nil)
+end
+
 function SimpleNotebook_Toggle()
 	frame:SetShown(not frame:IsShown())
 end

@@ -43,6 +43,7 @@ function Store.Init(accountDB, charDB)
 	for tabId in pairs(OPTIONAL_TABS) do
 		accountDB.tabs[tabId] = repair(accountDB.tabs[tabId], "boolean", true)
 	end
+	accountDB.openOnLogin = repair(accountDB.openOnLogin, "boolean", false)
 	accountDB.minimap = repair(accountDB.minimap, "table", {})
 	accountDB.minimap.angle = normalizeAngle(accountDB.minimap.angle) or DEFAULT_MINIMAP_ANGLE
 	accountDB.minimap.show = repair(accountDB.minimap.show, "boolean", true)
@@ -128,6 +129,10 @@ end
 
 function Store.SetMinimapAngle(angle)
 	accountData.minimap.angle = normalizeAngle(angle) or accountData.minimap.angle
+end
+
+function Store.IsOpenOnLogin()
+	return accountData.openOnLogin == true
 end
 
 function Store.IsMinimapShown()

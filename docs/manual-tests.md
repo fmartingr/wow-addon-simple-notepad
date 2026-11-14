@@ -241,3 +241,17 @@ Steps:
 Expected: the button shows at the lower left of the minimap on first login. A click opens and closes the window. The tooltip shows the title and the hint. The button follows the cursor around the edge and stays at the same place after `/reload`. The button hides at once after step 5 and shows again when you check the box.
 - Forever: not run
 - Retail: not run
+
+## Open on login
+
+### MT-23 Open character note on login
+Steps:
+1. Open Settings > AddOns > Simple Notebook. Check "Open character note on login".
+2. Select the Global tab in the window and close the window.
+3. Log out to the character list, then log in again.
+4. Enter `/reload`.
+5. Clear the checkbox, then log out and log in again.
+
+Expected: after step 3 the window opens on the character tab. After step 4 the window does not open. After step 5 the window does not open.
+- Forever: not run
+- Retail: not run

@@ -14,6 +14,7 @@ describe("Store", function()
 				schemaVersion = 1,
 				global = "",
 				tabs = { global = true, zone = true },
+				openOnLogin = false,
 				minimap = { angle = 225, show = true },
 			}, account)
 			assert.same({ schemaVersion = 1, character = "", zones = {}, lastTab = "character" }, char)
@@ -25,6 +26,7 @@ describe("Store", function()
 				schemaVersion = 1,
 				global = "",
 				tabs = { global = true, zone = true },
+				openOnLogin = false,
 				minimap = { angle = 225, show = true },
 			}, account)
 			assert.same({ schemaVersion = 1, character = "", zones = {}, lastTab = "character" }, char)
@@ -35,12 +37,14 @@ describe("Store", function()
 				schemaVersion = 1,
 				global = "g",
 				tabs = { global = false, zone = false },
+				openOnLogin = true,
 				minimap = { angle = 90, show = false },
 			}, { schemaVersion = 1, character = "c", zones = { [84] = "z" }, lastTab = "zone" })
 			assert.same({
 				schemaVersion = 1,
 				global = "g",
 				tabs = { global = false, zone = false },
+				openOnLogin = true,
 				minimap = { angle = 90, show = false },
 			}, account)
 			assert.same({ schemaVersion = 1, character = "c", zones = { [84] = "z" }, lastTab = "zone" }, char)
@@ -367,6 +371,23 @@ describe("Store", function()
 			assert.is_true(Store.IsMinimapShown())
 			Store.Init({ minimap = { show = false } }, nil)
 			assert.is_false(Store.IsMinimapShown())
+		end)
+	end)
+
+	describe("openOnLogin", function()
+		it("defaults to false", function()
+			Store.Init(nil, nil)
+			assert.is_false(Store.IsOpenOnLogin())
+		end)
+
+		it("keeps a true value", function()
+			Store.Init({ openOnLogin = true }, nil)
+			assert.is_true(Store.IsOpenOnLogin())
+		end)
+
+		it("repairs a wrong type", function()
+			local account = Store.Init({ openOnLogin = "yes" }, nil)
+			assert.is_false(account.openOnLogin)
 		end)
 	end)
 end)

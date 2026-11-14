@@ -21,6 +21,7 @@ read_globals = {
 	"ChatEdit_InsertLink",
 	"ChatFrameUtil",
 	"CreateFrame",
+	"GetLocale",
 	"GameTooltip",
 	"GetCursorPosition",
 	"Minimap",

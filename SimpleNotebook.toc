@@ -9,7 +9,7 @@
 ## AddonCompartmentFunc: SimpleNotebook_OnAddonCompartmentClick
 ## IconTexture: Interface\AddOns\SimpleNotebook\Media\icon
 
-Locales\enUS.lua
+Locales.lua
 Core\Store.lua
 Core\Links.lua
 Core\Tabs.lua

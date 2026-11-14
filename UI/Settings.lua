@@ -37,5 +37,15 @@ function SettingsPanel.OnStoreReady()
 		ns.MinimapButton.Refresh()
 	end)
 	Settings.CreateCheckbox(category, minimapSetting, L.SETTING_SHOW_MINIMAP_TOOLTIP)
+	local openSetting = Settings.RegisterAddOnSetting(
+		category,
+		"SimpleNotebook_OpenOnLogin",
+		"openOnLogin",
+		SimpleNotebookDB,
+		Settings.VarType.Boolean,
+		L.SETTING_OPEN_ON_LOGIN,
+		false
+	)
+	Settings.CreateCheckbox(category, openSetting, L.SETTING_OPEN_ON_LOGIN_TOOLTIP)
 	Settings.RegisterAddOnCategory(category)
 end

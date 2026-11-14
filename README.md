@@ -23,7 +23,7 @@ Press ESC once to leave the text area. Press ESC again to close the window.
 
 ## Tab rules
 
-- **Settings:** open Settings > AddOns > Simple Notebook. Two checkboxes show or hide the **Global** tab and the **Zone** tab. A third checkbox shows or hides the minimap button. The setting is the same for all characters.
+- **Settings:** open Settings > AddOns > Simple Notebook. Two checkboxes show or hide the **Global** tab and the **Zone** tab. A third checkbox shows or hides the minimap button. A fourth checkbox opens the window on the character tab at each login. The settings are the same for all characters.
 - **Character tab:** it cannot be hidden.
 - **Hidden tabs:** a hidden tab keeps its note. The note is back when you show the tab again.
 - **Zone key:** one note exists for each zone map. One note exists for each instance. Subzones use the note of their parent zone.
